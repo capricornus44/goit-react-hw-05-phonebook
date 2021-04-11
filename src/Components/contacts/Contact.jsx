@@ -1,5 +1,3 @@
-// import { ContactContainer } from './ContactListStyled';
-
 const Contact = ({ name, number, id, deleteContact }) => {
   const delContact = () => {
     deleteContact(id);

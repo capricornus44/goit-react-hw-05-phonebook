@@ -5,6 +5,7 @@ export const ContactListContainer = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  margin-top: 20px;
 
   .item {
     display: flex;

@@ -1,11 +1,17 @@
 import Contact from './Contact';
 import { ContactListContainer } from './ContactListStyled';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, deleteContact }) => {
   return (
     <ContactListContainer>
       {contacts.map(contact => {
-        return <Contact key={contact.id} {...contact} />;
+        return (
+          <Contact
+            key={contact.id}
+            {...contact}
+            deleteContact={deleteContact}
+          />
+        );
       })}
     </ContactListContainer>
   );

@@ -47,6 +47,19 @@ class App extends Component {
     }
   };
 
+  handleDeleteContact = async id => {
+    try {
+      await deleteContact(id);
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(contact => contact.id !== id),
+      }));
+    } catch (error) {
+      this.setState({ error: error.message });
+    } finally {
+      // this.setState({ isLoading: false });
+    }
+  };
+
   handleFilter = event => {
     const { value } = event.currentTarget;
     this.setState({ filter: value });
@@ -62,21 +75,8 @@ class App extends Component {
     );
   };
 
-  handleDeleteContact = async id => {
-    try {
-      await deleteContact(id);
-      this.setState(prevState => ({
-        courses: prevState.contacts.filter(contact => contact.id !== id),
-      }));
-    } catch (error) {
-      this.setState({ error: error.message });
-    } finally {
-      // this.setState({ isLoading: false });
-    }
-  };
-
   render() {
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     const filteredContacts = this.getMatchingContacts();
 
     return (
