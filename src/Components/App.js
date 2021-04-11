@@ -5,11 +5,7 @@ import ContactList from './contacts/ContactList';
 
 import { AppContainer } from './AppStyled';
 
-import {
-  getContacts,
-  addContact,
-  //  deleteContact
-} from '../services/dbRequest';
+import { getContacts, addContact, deleteContact } from '../services/dbRequest';
 
 class App extends Component {
   state = {
@@ -50,6 +46,19 @@ class App extends Component {
     }
   };
 
+  handleDeleteContact = async id => {
+    try {
+      await deleteContact(id);
+      this.setState(prevState => ({
+        courses: prevState.contacts.filter(contact => contact.id !== id),
+      }));
+    } catch (error) {
+      this.setState({ error: error.message });
+    } finally {
+      // this.setState({ isLoading: false });
+    }
+  };
+
   render() {
     const { contacts } = this.state;
     return (
@@ -64,7 +73,10 @@ class App extends Component {
         </section> */}
 
         <section className="section" title="Contacts">
-          <ContactList contacts={contacts} />
+          <ContactList
+            contacts={contacts}
+            deleteContact={this.handleDeleteContact}
+          />
         </section>
       </AppContainer>
     );
