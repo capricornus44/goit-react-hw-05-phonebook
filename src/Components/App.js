@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import Form from './form/Form';
 import Filter from './filter/Filter';
 import ContactList from './contacts/ContactList';
-
 import { AppContainer } from './AppStyled';
 
 import { getContacts, addContact, deleteContact } from '../services/dbRequest';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -32,8 +34,20 @@ class App extends Component {
   }
 
   handleAddContact = async contact => {
+    const { contacts } = this.state;
+    // console.log(contact.name);
+
     try {
       const response = await addContact(contact);
+      if (
+        contacts
+          .map(contact => contact.name.toLowerCase())
+          .includes(contact.name.toLowerCase())
+      ) {
+        toast.error(`Contact "${contact.name}" already exists`);
+        return;
+      }
+
       this.setState(prevState => ({
         contacts: [
           ...prevState.contacts,
@@ -76,7 +90,7 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const filteredContacts = this.getMatchingContacts();
 
     return (
@@ -86,22 +100,24 @@ class App extends Component {
           <Form addContact={this.handleAddContact} />
         </section>
 
-        <section className="section">
-          <h2>Find contact</h2>
-          <Filter
-            className="section"
-            filter={filter}
-            onChange={this.handleFilter}
-          />
-        </section>
+        {contacts.length > 1 && (
+          <section className="section">
+            <h2>Find contact</h2>
+            <Filter filter={filter} onChange={this.handleFilter} />
+          </section>
+        )}
 
-        <section className="section">
-          <h2>Contacts</h2>
-          <ContactList
-            contacts={filteredContacts}
-            deleteContact={this.handleDeleteContact}
-          />
-        </section>
+        {contacts.length > 0 && (
+          <section className="section">
+            <h2>Contacts</h2>
+            <ContactList
+              contacts={filteredContacts}
+              deleteContact={this.handleDeleteContact}
+            />
+          </section>
+        )}
+
+        <ToastContainer autoClose={2500} position="top-right" type="default" />
       </AppContainer>
     );
   }
