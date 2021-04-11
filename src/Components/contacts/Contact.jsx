@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+// import trash from '../../icon/trash.svg';
 
 const Contact = ({ name, number, id, deleteContact }) => {
   const delContact = () => {
@@ -10,7 +11,7 @@ const Contact = ({ name, number, id, deleteContact }) => {
       <span>{name}</span>
       <span className="num">{number}</span>
       <button type="button" onClick={delContact} className="deleteButton">
-        Delete
+        <i className="fa fa-trash" aria-hidden="true" />
       </button>
     </li>
   );
