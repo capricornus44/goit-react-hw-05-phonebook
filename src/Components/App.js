@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './form/Form';
-// import Filter from './filter/Filter';
+import Filter from './filter/Filter';
 import ContactList from './contacts/ContactList';
 
 import { AppContainer } from './AppStyled';
@@ -10,6 +10,7 @@ import { getContacts, addContact, deleteContact } from '../services/dbRequest';
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
     error: '',
   };
 
@@ -46,6 +47,21 @@ class App extends Component {
     }
   };
 
+  handleFilter = event => {
+    const { value } = event.currentTarget;
+    this.setState({ filter: value });
+  };
+
+  getMatchingContacts = () => {
+    const { contacts, filter } = this.state;
+
+    const optimizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(optimizedFilter),
+    );
+  };
+
   handleDeleteContact = async id => {
     try {
       await deleteContact(id);
@@ -60,7 +76,9 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const filteredContacts = this.getMatchingContacts();
+
     return (
       <AppContainer>
         <section className="section">
@@ -68,13 +86,19 @@ class App extends Component {
           <Form addContact={this.handleAddContact} />
         </section>
 
-        {/* <section>
-          <Filter />
-        </section> */}
+        <section className="section">
+          <h2>Find contact</h2>
+          <Filter
+            className="section"
+            filter={filter}
+            onChange={this.handleFilter}
+          />
+        </section>
 
-        <section className="section" title="Contacts">
+        <section className="section">
+          <h2>Contacts</h2>
           <ContactList
-            contacts={contacts}
+            contacts={filteredContacts}
             deleteContact={this.handleDeleteContact}
           />
         </section>
