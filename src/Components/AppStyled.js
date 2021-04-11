@@ -13,7 +13,7 @@ export const AppContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 80px;
-  background-color: #181a1b;
+  // background-color: #181a1b;
 
   .section {
     display: flex;
