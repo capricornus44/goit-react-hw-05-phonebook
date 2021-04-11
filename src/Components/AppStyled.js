@@ -37,4 +37,24 @@ export const AppContainer = styled.div`
     color: red;
     margin-bottom: 40px;
   }
+
+  // !! REACT ANIMATION
+  .title-slideIn-appear-active {
+    animation: task 500ms ease-in alternate-reverse;
+  }
+
+  @keyframes task {
+    0% {
+      transform: translateX(0);
+    }
+
+    30% {
+      opacity: 0.5;
+      transform: translateX(30px);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
 `;

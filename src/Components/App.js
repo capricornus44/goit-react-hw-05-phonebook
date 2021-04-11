@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { CSSTransition } from 'react-transition-group';
 import Form from './form/Form';
 import Filter from './filter/Filter';
 import ContactList from './contacts/ContactList';
@@ -97,7 +98,15 @@ class App extends Component {
         {error && <h2 className="errorMessage">{error}</h2>}
 
         <section className="section">
-          <h1>Phonebook</h1>
+          <CSSTransition
+            in={true}
+            appear={true}
+            classNames="title-slideIn"
+            timeout={500}
+            unmountOnExit
+          >
+            <h1>Phonebook</h1>
+          </CSSTransition>
           <Form addContact={this.handleAddContact} />
         </section>
 
