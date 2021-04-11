@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Contact from './Contact';
 import { ContactListContainer } from './ContactListStyled';
 
@@ -15,6 +16,11 @@ const ContactList = ({ contacts, deleteContact }) => {
       })}
     </ContactListContainer>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object.isRequired), // Не уверен, что правильно записал тип!!!!!
+  deleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;
