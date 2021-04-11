@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Form from './form/Form';
 // import Filter from './filter/Filter';
-// import Contacts from './contacts/Contacts';
+import ContactList from './contacts/ContactList';
 
 import { AppContainer } from './AppStyled';
 
 import {
   getContacts,
   addContact,
-  // deleteContact,
+  //  deleteContact
 } from '../services/dbRequest';
 
 class App extends Component {
@@ -51,6 +51,7 @@ class App extends Component {
   };
 
   render() {
+    const { contacts } = this.state;
     return (
       <AppContainer>
         <section className="section">
@@ -62,9 +63,9 @@ class App extends Component {
           <Filter />
         </section> */}
 
-        {/* <section title="Contacts">
-          <ContactList />
-        </section> */}
+        <section className="section" title="Contacts">
+          <ContactList contacts={contacts} />
+        </section>
       </AppContainer>
     );
   }
