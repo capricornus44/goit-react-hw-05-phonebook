@@ -6,6 +6,7 @@ const Filter = ({ filter, onChange }) => {
       <input
         type="text"
         value={filter}
+        placeholder="Find contacts by name"
         onChange={onChange}
         className="filterInput"
       />
