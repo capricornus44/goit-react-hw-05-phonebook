@@ -35,25 +35,24 @@ class App extends Component {
 
   handleAddContact = async contact => {
     const { contacts } = this.state;
-    // console.log(contact.name);
 
     try {
-      const response = await addContact(contact);
       if (
         contacts
           .map(contact => contact.name.toLowerCase())
           .includes(contact.name.toLowerCase())
       ) {
-        toast.error(`Contact "${contact.name}" already exists`);
+        toast.error(`${contact.name} already exists`);
         return;
+      } else {
+        const response = await addContact(contact);
+        this.setState(prevState => ({
+          contacts: [
+            ...prevState.contacts,
+            { ...contact, id: response.data.name },
+          ],
+        }));
       }
-
-      this.setState(prevState => ({
-        contacts: [
-          ...prevState.contacts,
-          { ...contact, id: response.data.name },
-        ],
-      }));
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
@@ -90,11 +89,13 @@ class App extends Component {
   };
 
   render() {
-    const { filter, contacts } = this.state;
+    const { filter, contacts, error } = this.state;
     const filteredContacts = this.getMatchingContacts();
 
     return (
       <AppContainer>
+        {error && <h2 className="errorMessage">{error}</h2>}
+
         <section className="section">
           <h1>Phonebook</h1>
           <Form addContact={this.handleAddContact} />
@@ -117,7 +118,7 @@ class App extends Component {
           </section>
         )}
 
-        <ToastContainer autoClose={2500} position="top-right" type="default" />
+        <ToastContainer autoClose={2500} position="top-right" type="error" />
       </AppContainer>
     );
   }
