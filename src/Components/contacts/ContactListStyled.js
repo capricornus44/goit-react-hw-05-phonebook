@@ -5,12 +5,15 @@ export const ContactListContainer = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  height: auto;
   margin-top: 20px;
 
   .item {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 100%;
+    height: 50px;
     padding: 12px 8px;
     border-radius: 8px;
     border: 1px solid #2f3c87;
@@ -31,11 +34,20 @@ export const ContactListContainer = styled.ul`
   .deleteButton {
     display: inline-block;
     margin-left: 40px;
+    width: 35px;
+    height: 35px;
     // border: 1px solid #dfe1e5;
     border: 1px solid #f1392d;
     border-radius: 8px;
+
     color: #ffffff;
+
     background-color: #f1392d;
     cursor: pointer;
+  }
+
+  .fa.fa-trash {
+    font-size: 24px;
+    color: #ffffea;
   }
 `;

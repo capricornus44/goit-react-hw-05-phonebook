@@ -9,7 +9,7 @@ export const FilterContainer = styled.div`
   .filterInput {
     display: block;
     width: 100%;
-    height: 35px;
+    height: 50px;
     margin-top: 5px;
     padding-left: 12px;
     padding-left: 12px;
@@ -30,7 +30,6 @@ export const FilterContainer = styled.div`
     }
 
     &::placeholder {
-      font-size: 14px;
       color: rgba(255, 255, 255, 0.3);
     }
   }

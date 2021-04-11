@@ -3,16 +3,15 @@ import styled from 'styled-components';
 export const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 1170px;
   height: 100vh;
   padding: 0 15px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 80px;
+  margin-top: 30px;
+
   // background-color: #181a1b;
 
   .section {
@@ -30,8 +29,12 @@ export const AppContainer = styled.div`
     box-shadow: 0 4px 6px 4px rgba(0, 0, 0, 0.2);
 
     &:not(:last-child) {
-      // margin-right: 32px;
       margin-bottom: 20px;
     }
+  }
+
+  .errorMessage {
+    color: red;
+    margin-bottom: 40px;
   }
 `;

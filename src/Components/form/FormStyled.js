@@ -18,7 +18,7 @@ export const FormContainer = styled.form`
   .formInput {
     display: block;
     width: 100%;
-    height: 35px;
+    height: 50px;
     margin-top: 5px;
     padding: 12px 16px;
     // border: 1px solid #dfe1e5;
@@ -38,7 +38,6 @@ export const FormContainer = styled.form`
     }
 
     &::placeholder {
-      font-size: 14px;
       color: rgba(255, 255, 255, 0.3);
     }
   }
@@ -46,7 +45,7 @@ export const FormContainer = styled.form`
   .button {
     display: block;
     width: 100%;
-    height: 35px;
+    height: 50px;
     // border: 1px solid #dfe1e5;
     border: 1px solid #3645ab;
     border-radius: 8px;
