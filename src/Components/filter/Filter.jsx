@@ -4,13 +4,16 @@ import { FilterContainer } from './FilterStyled';
 const Filter = ({ filter, onChange }) => {
   return (
     <FilterContainer>
-      <input
-        type="text"
-        value={filter}
-        placeholder="Find contacts by name"
-        onChange={onChange}
-        className="filterInput"
-      />
+      <label className="filterLabel">
+        Filter
+        <input
+          type="text"
+          value={filter}
+          placeholder="Find contacts by name"
+          onChange={onChange}
+          className="filterInput"
+        />
+      </label>
     </FilterContainer>
   );
 };
