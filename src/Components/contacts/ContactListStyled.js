@@ -4,9 +4,10 @@ export const ContactListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  // width: 100%;
+  width: 350px;
   height: auto;
-  margin-top: 20px;
+  // margin-top: 20px;
 
   .item {
     display: flex;
@@ -23,7 +24,7 @@ export const ContactListContainer = styled.ul`
     background-color: #181a1b;
 
     &:not(:last-child) {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
   }
 
@@ -49,5 +50,32 @@ export const ContactListContainer = styled.ul`
   .fa.fa-trash {
     font-size: 24px;
     color: #ffffea;
+  }
+
+  // !! CONTACT ANIMATION
+  .contact-animation-enter {
+    opacity: 0;
+    transform: scale(0);
+    // transform: translateX(-100%);
+  }
+
+  .contact-animation-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    // transform: translateX(1);
+    transition: all 250ms linear;
+  }
+
+  .contact-animation-exit {
+    opacity: 1;
+    transform: scale(1);
+    // transform: translateX(0);
+  }
+
+  .contact-animation-exit-active {
+    opacity: 0;
+    transform: scale(0);
+    // transform: translateX(-100%);
+    transition: all 250ms linear;
   }
 `;
