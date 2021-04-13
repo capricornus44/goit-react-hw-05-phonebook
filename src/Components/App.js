@@ -29,9 +29,10 @@ class App extends Component {
       }
     } catch (error) {
       this.setState({ error: error.message });
-    } finally {
-      // this.setState({ isLoading: false });
     }
+    // finally {
+    //   this.setState({ isLoading: false });
+    // }
   }
 
   handleAddContact = async contact => {
@@ -56,9 +57,10 @@ class App extends Component {
       }
     } catch (error) {
       this.setState({ error: error.message });
-    } finally {
-      // this.setState({ isLoading: false });
     }
+    // finally {
+    //   this.setState({ isLoading: false });
+    // }
   };
 
   handleDeleteContact = async id => {
@@ -69,9 +71,10 @@ class App extends Component {
       }));
     } catch (error) {
       this.setState({ error: error.message });
-    } finally {
-      // this.setState({ isLoading: false });
     }
+    // finally {
+    //   this.setState({ isLoading: false });
+    // }
   };
 
   handleFilter = event => {
@@ -97,36 +100,49 @@ class App extends Component {
       <AppContainer>
         {error && <h2 className="errorMessage">{error}</h2>}
 
+        {/* APPLICATION TITLE ANIMATION */}
+        <CSSTransition
+          in={true}
+          appear={true}
+          classNames="title-slideIn"
+          timeout={500}
+          unmountOnExit
+        >
+          <h1 className="app-title">Phonebook</h1>
+        </CSSTransition>
+
+        {/* APPLICATION FORM */}
         <section className="section">
-          <CSSTransition
-            in={true}
-            appear={true}
-            classNames="title-slideIn"
-            timeout={500}
-            unmountOnExit
-          >
-            <h1>Phonebook</h1>
-          </CSSTransition>
           <Form addContact={this.handleAddContact} />
         </section>
 
-        {contacts.length > 1 && (
+        {/* FILTER ANIMATION */}
+        <CSSTransition
+          in={contacts.length > 1}
+          classNames="filter-animation"
+          timeout={250}
+          unmountOnExit
+        >
           <section className="section">
-            <h2>Find contact</h2>
+            {/* <h2>Find contact</h2> */}
             <Filter filter={filter} onChange={this.handleFilter} />
           </section>
-        )}
+        </CSSTransition>
 
+        {/* CONTACT LIST ANIMATION */}
         {contacts.length > 0 && (
-          <section className="section">
-            <h2>Contacts</h2>
-            <ContactList
-              contacts={filteredContacts}
-              deleteContact={this.handleDeleteContact}
-            />
-          </section>
+          <ContactList
+            contacts={filteredContacts}
+            deleteContact={this.handleDeleteContact}
+          />
+          // <section className="section">
+          //   <h2>Contacts</h2>
+          //   <ContactList
+          //     contacts={filteredContacts}
+          //     deleteContact={this.handleDeleteContact}
+          //   />
+          // </section>
         )}
-
         <ToastContainer autoClose={2500} position="top-right" type="error" />
       </AppContainer>
     );

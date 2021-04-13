@@ -38,12 +38,36 @@ export const AppContainer = styled.div`
     margin-bottom: 40px;
   }
 
-  // !! REACT ANIMATION
+  // !! APPLICATION TITLE
   .title-slideIn-appear-active {
-    animation: task 500ms ease-in alternate-reverse;
+    animation: anime 500ms ease-in alternate-reverse;
   }
 
-  @keyframes task {
+  // !! CONTACTS FILTER
+  .filter-animation-enter {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .filter-animation-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 250ms linear;
+  }
+
+  .filter-animation-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .filter-animation-exit-active {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 250ms linear;
+  }
+
+  // !! ANIMATION
+  @keyframes anime {
     0% {
       transform: translateX(0);
     }
