@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-// import trash from '../../icon/trash.svg';
 
 const Contact = ({ name, number, id, deleteContact }) => {
   const delContact = () => {

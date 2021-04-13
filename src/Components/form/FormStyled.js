@@ -5,13 +5,14 @@ export const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 20px;
+  // margin-top: 20px;
 
   .formLabel {
     display: block;
     width: 100%;
     margin-bottom: 20px;
 
+    font-size: 18px;
     color: #ffffff;
   }
 
