@@ -5,18 +5,6 @@ import { ContactListContainer } from './ContactListStyled';
 
 const ContactList = ({ contacts, deleteContact }) => {
   return (
-    // <ContactListContainer>
-    //   {contacts.map(contact => {
-    //     return (
-    //       <Contact
-    //         key={contact.id}
-    //         {...contact}
-    //         deleteContact={deleteContact}
-    //       />
-    //     );
-    //   })}
-    // </ContactListContainer>
-
     <TransitionGroup>
       <ContactListContainer>
         {contacts.map(contact => {
@@ -41,7 +29,7 @@ const ContactList = ({ contacts, deleteContact }) => {
 };
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object.isRequired), // Не уверен, что правильно записал тип!!!!!
+  contacts: PropTypes.arrayOf(PropTypes.object.isRequired),
   deleteContact: PropTypes.func.isRequired,
 };
 
